@@ -1,6 +1,7 @@
 package com.pessoas.apirest.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,23 @@ public class PessoaService {
 	}
 
 	public PessoaDTO getPessoaById(Long id) throws ObjectNotFoundException {
-	
-		java.util.Optional<Pessoa> pessoa = rep.findById(id);
-		
+
+		Optional<Pessoa> pessoa = rep.findById(id);
+
 		return pessoa.map(PessoaDTO::create).orElseThrow(() -> new ObjectNotFoundException("Pessoa não encontrado!"));
-		
+
+	}
+
+	public PessoaDTO getPessoaByCpf(String cpf) throws ObjectNotFoundException {
+		Optional<Pessoa> pessoa = rep.findByCpf(cpf);
+
+		return pessoa.map(PessoaDTO::create).orElseThrow(() -> new ObjectNotFoundException("CPF não cadastrado!"));
+	}
+
+	public PessoaDTO getPessoaByNome(String nome) throws ObjectNotFoundException {
+		Optional<Pessoa> pessoa = rep.findByNome(nome);
+
+		return pessoa.map(PessoaDTO::create).orElseThrow(() -> new ObjectNotFoundException("Nome não encontrado!"));
 	}
 
 }

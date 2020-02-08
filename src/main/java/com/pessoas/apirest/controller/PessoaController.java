@@ -22,20 +22,35 @@ public class PessoaController {
 	PessoaService service;
 
 	@GetMapping
-	public ResponseEntity<List<PessoaDTO>> getPessoas() {
+	public ResponseEntity<List<PessoaDTO>> listarPessoas() {
 
 		return ResponseEntity.ok(service.getPessoas());
 	}
-	
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<PessoaDTO> getPessoaById(@PathVariable("id") Long id) throws ObjectNotFoundException{
+	public ResponseEntity<PessoaDTO> buscarPessoaPorId(@PathVariable("id") Long id) throws ObjectNotFoundException {
 		PessoaDTO pessoa = service.getPessoaById(id);
-		
+
 		return ResponseEntity.ok(pessoa);
-		
-		
-		
+
+	}
+
+	@GetMapping("/{cpf}")
+	public ResponseEntity<PessoaDTO> buscarPessoaPorCpf(@PathVariable("cpf") String cpf)
+			throws ObjectNotFoundException {
+		PessoaDTO pessoa = service.getPessoaByCpf(cpf);
+
+		return ResponseEntity.ok(pessoa);
+
+	}
+
+	@GetMapping("/{nome}")
+	public ResponseEntity<PessoaDTO> buscarPessoaPorNome(@PathVariable("nome") String nome)
+			throws ObjectNotFoundException {
+		PessoaDTO pessoa = service.getPessoaByNome(nome);
+
+		return ResponseEntity.ok(pessoa);
+
 	}
 
 }

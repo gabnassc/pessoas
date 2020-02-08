@@ -28,8 +28,8 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .contact(new Contact("Gabriel Nascimento", "", ""))
-                .title("Carros")
-                .description("Documentação API dos Carros para Estudo")
+                .title("Pessoas API REST")
+                .description("API que retorna dados de pessoas. Desenvolvida para estudos")
                 .license("Apache Licence Version 2.0")
                 .licenseUrl("https://apache.org")
                 .version("1.0")
